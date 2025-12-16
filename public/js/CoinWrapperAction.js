@@ -19,45 +19,45 @@ class CoinWrapperAction extends React.Component {
     let label;
     switch (action) {
       case 'buy':
-        label = 'Buy';
+        label = '매수';
         break;
       case 'buy-temporary-disabled':
-        label = 'Temporary disabled';
+        label = '일시 중지됨';
         break;
       case 'buy-order-checking':
-        label = 'Checking for buy order';
+        label = '매수 주문 확인 중';
         break;
       case 'buy-order-wait':
-        label = 'Wait for buy order';
+        label = '매수 주문 대기 중';
         break;
       case 'sell':
-        label = 'Sell';
+        label = '매도';
         break;
       case 'sell-temporary-disabled':
-        label = 'Temporary disabled';
+        label = '일시 중지됨';
         break;
       case 'sell-stop-loss':
-        label = 'Selling due to stop-loss';
+        label = '손절매 실행 중';
         break;
       case 'sell-order-checking':
-        label = 'Checking for sell order';
+        label = '매도 주문 확인 중';
         break;
       case 'sell-order-wait':
-        label = 'Wait for sell order';
+        label = '매도 주문 대기 중';
         break;
       case 'sell-wait':
-        label = 'Wait';
+        label = '대기';
         break;
       default:
-        label = 'Wait';
+        label = '대기';
     }
 
     if (isLocked) {
-      label = 'Locked';
+      label = '잠김';
     }
 
     if (isActionDisabled.isDisabled) {
-      label = `Disabled by ${isActionDisabled.disabledBy}`;
+      label = `${isActionDisabled.disabledBy}에 의해 비활성화됨`;
     }
 
     let renderOverrideAction = '';
@@ -67,9 +67,9 @@ class CoinWrapperAction extends React.Component {
           <div
             className='w-100 px-1 text-warning'
             title={overrideData.actionAt}>
-            Action <strong>{overrideData.action}</strong> will be executed{' '}
-            {moment(overrideData.actionAt).fromNow()}, triggered by{' '}
-            {overrideData.triggeredBy}.
+            <strong>{overrideData.action}</strong> 작업이{' '}
+            {moment(overrideData.actionAt).fromNow()} 후 실행됩니다.{' '}
+            ({overrideData.triggeredBy}에 의해 트리거됨)
           </div>
         </div>
       );
@@ -102,12 +102,12 @@ class CoinWrapperAction extends React.Component {
                 overlay={
                   <Popover id='action-updated-at-alert-overlay-right'>
                     <Popover.Content>
-                      The bot didn't receive the price change for over a min. It
-                      means the price hasn't changed in Binance. It will be
-                      updated when the bot receives a new price change.
+                      봇이 1분 이상 가격 변화를 수신하지 못했습니다.
+                      바이낸스에서 가격이 변하지 않았다는 의미입니다.
+                      새로운 가격 변화가 수신되면 업데이트됩니다.
                       <br />
                       <br />
-                      Last updated: {updatedAt.fromNow()}
+                      마지막 업데이트: {updatedAt.fromNow()}
                     </Popover.Content>
                   </Popover>
                 }>
@@ -142,7 +142,7 @@ class CoinWrapperAction extends React.Component {
                   ''
                 )}
                 ({moment.duration(isActionDisabled.ttl, 'seconds').humanize()}{' '}
-                left){' '}
+                남음){' '}
               </div>
             ) : (
               ''

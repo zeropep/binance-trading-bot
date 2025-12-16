@@ -172,7 +172,7 @@ class SymbolSettingIcon extends React.Component {
                       variant='link'
                       eventKey='0'
                       className='p-0 fs-7 text-uppercase'>
-                      Candle Settings
+                      캔들 설정
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey='0'>
@@ -274,7 +274,7 @@ class SymbolSettingIcon extends React.Component {
                       variant='link'
                       eventKey='0'
                       className='p-0 fs-7 text-uppercase'>
-                      Buy Configurations
+                      매수 설정
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey='0'>
@@ -338,7 +338,7 @@ class SymbolSettingIcon extends React.Component {
                                   variant='link'
                                   eventKey='0'
                                   className='p-0 fs-7 text-uppercase'>
-                                  Last buy price removal threshold
+                                  마지막 매수가 삭제 기준
                                 </Accordion.Toggle>
                               </Card.Header>
                               <Accordion.Collapse eventKey='0'>
@@ -401,7 +401,7 @@ class SymbolSettingIcon extends React.Component {
                               variant='link'
                               eventKey='0'
                               className='p-0 fs-7 text-uppercase'>
-                              Buy Restriction with ATH (All Time High)
+                              ATH(역대 최고가) 매수 제한
                             </Accordion.Toggle>
                           </Card.Header>
                           <Accordion.Collapse eventKey='0'>
@@ -664,7 +664,7 @@ class SymbolSettingIcon extends React.Component {
                       variant='link'
                       eventKey='0'
                       className='p-0 fs-7 text-uppercase'>
-                      Sell Configurations
+                      매도 설정
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey='0'>
@@ -726,7 +726,7 @@ class SymbolSettingIcon extends React.Component {
                                   variant='link'
                                   eventKey='0'
                                   className='p-0 fs-7 text-uppercase'>
-                                  Sell Stop-Loss
+                                  매도 손절매
                                 </Accordion.Toggle>
                               </Card.Header>
                               <Accordion.Collapse eventKey='0'>
@@ -902,7 +902,7 @@ class SymbolSettingIcon extends React.Component {
                       variant='link'
                       eventKey='0'
                       className='p-0 fs-7 text-uppercase'>
-                      Conservative mode
+                      보수적 모드
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey='0'>

@@ -227,14 +227,14 @@ class SettingIcon extends React.Component {
           size='xl'>
           <Form>
             <Modal.Header className='pt-1 pb-1'>
-              <Modal.Title>Global Settings</Modal.Title>
+              <Modal.Title>전역 설정</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <span className='text-muted'>
-                In this modal, you can configure the global configuration. If
-                the symbol has a specific configuration, the change won't impact
-                the symbol. Please make sure you understand what the setting is
-                about before changing the configuration value.
+                이 창에서 전역 설정을 구성할 수 있습니다. 심볼에 특정 설정이
+                있는 경우 변경 사항이 해당 심볼에 영향을 미치지 않습니다. 설정
+                값을 변경하기 전에 해당 설정이 무엇인지 이해하고 있는지
+                확인하세요.
               </span>
               <Accordion defaultActiveKey='0'>
                 <Card className='mt-1' style={{ overflow: 'visible' }}>
@@ -244,7 +244,7 @@ class SettingIcon extends React.Component {
                       variant='link'
                       eventKey='0'
                       className='p-0 fs-7 text-uppercase'>
-                      Symbols
+                      심볼
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey='0'>
@@ -293,37 +293,91 @@ class SettingIcon extends React.Component {
                                 option,
                                 { text },
                                 _index
-                              ) => (
-                                <React.Fragment>
-                                  <div className='d-flex justify-content-between align-items-center'>
-                                    <div>
-                                      <i
-                                        style={{ fontSize: '0.4em' }}
-                                        className={`fas fa-circle align-middle mr-2 fa-fw ${
-                                          exchangeSymbols[option].status ===
-                                          'TRADING'
-                                            ? 'text-success blink'
-                                            : 'text-danger'
-                                        }`}></i>
-                                      <Highlighter search={text}>
-                                        {option}
-                                      </Highlighter>
+                              ) => {
+                                const symbolData = exchangeSymbols[option];
+                                const tvRecommendation =
+                                  symbolData.tradingViewRecommendation;
+
+                                // TradingView 추천에 따른 배지 스타일 결정
+                                const getTvBadge = recommendation => {
+                                  if (!recommendation) return null;
+
+                                  const badgeStyles = {
+                                    STRONG_BUY: {
+                                      className:
+                                        'badge badge-success badge-pill',
+                                      style: { backgroundColor: '#00c853' },
+                                      label: 'Strong Buy'
+                                    },
+                                    BUY: {
+                                      className:
+                                        'badge badge-success badge-pill',
+                                      label: 'Buy'
+                                    },
+                                    NEUTRAL: {
+                                      className:
+                                        'badge badge-secondary badge-pill',
+                                      label: 'Neutral'
+                                    },
+                                    SELL: {
+                                      className:
+                                        'badge badge-danger badge-pill',
+                                      label: 'Sell'
+                                    },
+                                    STRONG_SELL: {
+                                      className:
+                                        'badge badge-danger badge-pill',
+                                      style: { backgroundColor: '#d50000' },
+                                      label: 'Strong Sell'
+                                    }
+                                  };
+
+                                  const badge = badgeStyles[recommendation];
+                                  if (!badge) return null;
+
+                                  return (
+                                    <span
+                                      className={badge.className}
+                                      style={badge.style || {}}
+                                      title={`TradingView: ${badge.label}`}>
+                                      {badge.label}
+                                    </span>
+                                  );
+                                };
+
+                                return (
+                                  <React.Fragment>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                      <div>
+                                        <i
+                                          style={{ fontSize: '0.4em' }}
+                                          className={`fas fa-circle align-middle mr-2 fa-fw ${
+                                            symbolData.status === 'TRADING'
+                                              ? 'text-success blink'
+                                              : 'text-danger'
+                                          }`}></i>
+                                        <Highlighter search={text}>
+                                          {option}
+                                        </Highlighter>
+                                      </div>
+                                      <div className='d-flex align-items-center'>
+                                        {symbolData.status === 'TRADING' ? (
+                                          <span className='badge badge-success badge-pill mr-1'>
+                                            Active
+                                          </span>
+                                        ) : (
+                                          <span className='badge badge-danger badge-pill mr-1'>
+                                            Inactive
+                                          </span>
+                                        )}
+                                        {getTvBadge(tvRecommendation)}
+                                      </div>
                                     </div>
-                                    {exchangeSymbols[option].status ===
-                                    'TRADING' ? (
-                                      <span className='badge badge-success badge-pill'>
-                                        Active
-                                      </span>
-                                    ) : (
-                                      <span className='badge badge-danger badge-pill'>
-                                        Inactive
-                                      </span>
-                                    )}
-                                  </div>
-                                </React.Fragment>
-                              )}
+                                  </React.Fragment>
+                                );
+                              }}
                               defaultSelected={selectedSymbols}
-                              placeholder='Choose symbols to monitor...'
+                              placeholder='모니터링할 심볼을 선택하세요...'
                               isInvalid={
                                 _.get(validation, `symbols`, true) === false
                               }
@@ -342,7 +396,7 @@ class SettingIcon extends React.Component {
                               const { configuration } = this.state;
                               configuration.symbols = [];
                             }}>
-                            Clear selection
+                            선택 초기화
                           </button>
                         </div>
                       </div>
@@ -359,7 +413,7 @@ class SettingIcon extends React.Component {
                       variant='link'
                       eventKey='0'
                       className='p-0 fs-7 text-uppercase'>
-                      Candle Settings
+                      캔들 설정
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey='0'>
@@ -461,7 +515,7 @@ class SettingIcon extends React.Component {
                       variant='link'
                       eventKey='0'
                       className='p-0 fs-7 text-uppercase'>
-                      Buy Configurations
+                      매수 설정
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey='0'>
@@ -527,7 +581,7 @@ class SettingIcon extends React.Component {
                                   variant='link'
                                   eventKey='0'
                                   className='p-0 fs-7 text-uppercase'>
-                                  Last buy price removal threshold
+                                  마지막 매수가 삭제 기준
                                 </Accordion.Toggle>
                               </Card.Header>
                               <Accordion.Collapse eventKey='0'>
@@ -560,7 +614,7 @@ class SettingIcon extends React.Component {
                                   variant='link'
                                   eventKey='0'
                                   className='p-0 fs-7 text-uppercase'>
-                                  Buy Restriction with ATH (All Time High)
+                                  ATH(역대 최고가) 매수 제한
                                 </Accordion.Toggle>
                               </Card.Header>
                               <Accordion.Collapse eventKey='0'>
@@ -773,7 +827,7 @@ class SettingIcon extends React.Component {
                       variant='link'
                       eventKey='0'
                       className='p-0 fs-7 text-uppercase'>
-                      Sell Configurations
+                      매도 설정
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey='0'>
@@ -838,7 +892,7 @@ class SettingIcon extends React.Component {
                                   variant='link'
                                   eventKey='0'
                                   className='p-0 fs-7 text-uppercase'>
-                                  Sell Stop-Loss
+                                  매도 손절매
                                 </Accordion.Toggle>
                               </Card.Header>
                               <Accordion.Collapse eventKey='0'>
@@ -1014,7 +1068,7 @@ class SettingIcon extends React.Component {
                       variant='link'
                       eventKey='0'
                       className='p-0 fs-7 text-uppercase'>
-                      Conservative mode
+                      보수적 모드
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey='0'>
@@ -1130,21 +1184,20 @@ class SettingIcon extends React.Component {
             </Modal.Body>
             <Modal.Footer>
               <div className='w-100'>
-                Note that the changes will display after the new price change is
-                processed.
+                변경 사항은 새 가격 변화가 처리된 후 표시됩니다.
               </div>
               <Button
                 variant='secondary'
                 size='sm'
                 onClick={() => this.handleModalClose('setting')}>
-                Close
+                닫기
               </Button>
               <Button
                 variant='primary'
                 size='sm'
                 disabled={!isValid}
                 onClick={() => this.handleModalShow('confirm')}>
-                Save Changes
+                변경 사항 저장
               </Button>
             </Modal.Footer>
           </Form>
@@ -1156,24 +1209,22 @@ class SettingIcon extends React.Component {
           size='md'>
           <Modal.Header className='pt-1 pb-1'>
             <Modal.Title>
-              <span className='text-danger'>⚠ Save Changes</span>
+              <span className='text-danger'>⚠ 변경 사항 저장</span>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Warning: You are about to save the global configuration.
+            경고: 전역 설정을 저장하려고 합니다.
             <br />
             <br />
-            Do you want to apply the changes for all symbols or just global
-            configuration?
+            모든 심볼에 변경 사항을 적용하시겠습니까, 아니면 전역 설정에만
+            적용하시겠습니까?
             <br />
             <br />
-            If you choose to apply for all symbols, then customised symbol
-            configurations will be removed.
+            모든 심볼에 적용을 선택하면 커스텀 심볼 설정이 제거됩니다.
             <br />
             <br />
-            If you choose to apply the global configuration only, then the
-            symbols that are different from the global configuration will be
-            displayed as customised.
+            전역 설정에만 적용을 선택하면 전역 설정과 다른 심볼은 커스텀으로
+            표시됩니다.
           </Modal.Body>
 
           <Modal.Footer>
@@ -1181,13 +1232,13 @@ class SettingIcon extends React.Component {
               variant='secondary'
               size='sm'
               onClick={() => this.handleModalClose('confirm')}>
-              Cancel
+              취소
             </Button>
             <Button
               variant='success'
               size='sm'
               onClick={() => this.handleFormSubmit({ action: 'apply-to-all' })}>
-              Apply to all symbols
+              모든 심볼에 적용
             </Button>
             <Button
               variant='primary'
@@ -1197,7 +1248,7 @@ class SettingIcon extends React.Component {
                   action: 'apply-to-global-only'
                 })
               }>
-              Apply to global only
+              전역에만 적용
             </Button>
           </Modal.Footer>
         </Modal>

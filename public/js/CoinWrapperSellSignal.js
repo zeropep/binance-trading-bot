@@ -73,8 +73,7 @@ class CoinWrapperSellSignal extends React.Component {
             <div className='coin-info-column-grid'>
               <div className='coin-info-column coin-info-column-price'>
                 <div className='coin-info-label text-center text-muted'>
-                  ... {hiddenCount} grid trade{hiddenCount === 1 ? '' : 's'}{' '}
-                  hidden ...
+                  ... {hiddenCount}개 그리드 거래 숨김 ...
                 </div>
               </div>
             </div>
@@ -112,17 +111,17 @@ class CoinWrapperSellSignal extends React.Component {
                       <Popover.Content>
                         {grid.executed ? (
                           <React.Fragment>
-                            The grid trade #{i + 1} has been executed at{' '}
+                            그리드 거래 #{i + 1}이(가){' '}
                             {moment(grid.executedOrder.updateTime).fromNow()} (
                             {moment(grid.executedOrder.updateTime).format()}
-                            ).
+                            )에 실행되었습니다.
                           </React.Fragment>
                         ) : (
                           <React.Fragment>
-                            The grid trade #{i + 1} has not been executed.{' '}
+                            그리드 거래 #{i + 1}이(가) 아직 실행되지 않았습니다.{' '}
                             {currentGridTradeIndex === i
-                              ? 'Waiting to be executed.'
-                              : `Waiting the grid trade #${i} to be executed.`}
+                              ? '실행 대기 중입니다.'
+                              : `그리드 거래 #${i} 실행 대기 중입니다.`}
                           </React.Fragment>
                         )}
                       </Popover.Content>
@@ -179,7 +178,7 @@ class CoinWrapperSellSignal extends React.Component {
             )}
             {sell.difference && currentGridTradeIndex === i ? (
               <div className='coin-info-column coin-info-column-price'>
-                <span className='coin-info-label'>Difference to sell:</span>
+                <span className='coin-info-label'>매도까지 차이:</span>
                 <HightlightChange
                   className='coin-info-value'
                   id='sell-difference'>
@@ -196,7 +195,7 @@ class CoinWrapperSellSignal extends React.Component {
                   collapsed ? 'd-none' : ''
                 }`}>
                 <div className='coin-info-column coin-info-column-order'>
-                  <span className='coin-info-label'>- Sold date:</span>
+                  <span className='coin-info-label'>- 매도 일시:</span>
                   <div className='coin-info-value'>
                     {moment(grid.executedOrder.transactTime).format(
                       'YYYY-MM-DD HH:mm'
@@ -204,19 +203,19 @@ class CoinWrapperSellSignal extends React.Component {
                   </div>
                 </div>
                 <div className='coin-info-column coin-info-column-order'>
-                  <span className='coin-info-label'>- Sold price:</span>
+                  <span className='coin-info-label'>- 매도 가격:</span>
                   <div className='coin-info-value'>
                     {parseFloat(grid.executedOrder.price).toFixed(precision)}
                   </div>
                 </div>
                 <div className='coin-info-column coin-info-column-order'>
-                  <span className='coin-info-label'>- Sold qty:</span>
+                  <span className='coin-info-label'>- 매도 수량:</span>
                   <div className='coin-info-value'>
                     {parseFloat(grid.executedOrder.executedQty)}
                   </div>
                 </div>
                 <div className='coin-info-column coin-info-column-order'>
-                  <span className='coin-info-label'>- Sold amount:</span>
+                  <span className='coin-info-label'>- 매도 금액:</span>
                   <div className='coin-info-value'>
                     {parseFloat(grid.executedOrder.cummulativeQuoteQty).toFixed(
                       precision
@@ -234,7 +233,7 @@ class CoinWrapperSellSignal extends React.Component {
               }`}>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Trigger price percentage:
+                  - 트리거 가격 비율:
                 </span>
                 <div className='coin-info-value'>
                   {((sell.triggerPercentage - 1) * 100).toFixed(2)}%
@@ -242,7 +241,7 @@ class CoinWrapperSellSignal extends React.Component {
               </div>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Stop price percentage:
+                  - 손절 가격 비율:
                 </span>
                 <div className='coin-info-value'>
                   {((grid.stopPercentage - 1) * 100).toFixed(2)}%
@@ -250,7 +249,7 @@ class CoinWrapperSellSignal extends React.Component {
               </div>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Limit price percentage:
+                  - 지정가 비율:
                 </span>
                 <div className='coin-info-value'>
                   {((grid.limitPercentage - 1) * 100).toFixed(2)}%
@@ -258,7 +257,7 @@ class CoinWrapperSellSignal extends React.Component {
               </div>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Sell quantity percentage:
+                  - 매도 수량 비율:
                 </span>
                 <div className='coin-info-value'>
                   {(grid.quantityPercentage * 100).toFixed(2)}%
@@ -286,7 +285,7 @@ class CoinWrapperSellSignal extends React.Component {
                   %){' '}
                 </span>
               ) : (
-                <span>Sell Signal </span>
+                <span>매도 신호 </span>
               )}
               <span className='coin-info-value'>
                 {symbolConfiguration.sell.enabled ? (
@@ -315,7 +314,7 @@ class CoinWrapperSellSignal extends React.Component {
 
           {sell.currentPrice ? (
             <div className='coin-info-column coin-info-column-price'>
-              <span className='coin-info-label'>Current price:</span>
+              <span className='coin-info-label'>현재가:</span>
               <HightlightChange className='coin-info-value'>
                 {parseFloat(sell.currentPrice).toFixed(precision)}
               </HightlightChange>
@@ -329,7 +328,7 @@ class CoinWrapperSellSignal extends React.Component {
             isAuthenticated={isAuthenticated}></CoinWrapperSellLastBuyPrice>
           {sell.currentProfit ? (
             <div className='coin-info-column coin-info-column-price'>
-              <span className='coin-info-label'>Profit/Loss:</span>
+              <span className='coin-info-label'>손익:</span>
               <HightlightChange
                 className={`coin-info-value ${
                   sell.currentProfit >= 0 ? 'text-success' : 'text-danger'
@@ -362,7 +361,7 @@ class CoinWrapperSellSignal extends React.Component {
               </div>
               <div className='coin-info-column coin-info-column-stop-loss-price'>
                 <span className='coin-info-label'>
-                  Difference to Stop-Loss:
+                  손절매까지 차이:
                 </span>
                 <HightlightChange className='coin-info-value'>
                   {parseFloat(sell.stopLossDifference).toFixed(2)}%
@@ -403,7 +402,7 @@ class CoinWrapperSellSignal extends React.Component {
                 %){' '}
               </span>
             ) : (
-              <span>Sell Signal </span>
+              <span>매도 신호 </span>
             )}
             <span className='coin-info-value'>
               {symbolConfiguration.sell.enabled ? (
@@ -431,7 +430,7 @@ class CoinWrapperSellSignal extends React.Component {
           </div>
           {symbolConfiguration.sell.enabled === false ? (
             <HightlightChange className='coin-info-message badge-pill badge-danger'>
-              Trading is disabled.
+              거래가 비활성화되어 있습니다.
             </HightlightChange>
           ) : (
             ''

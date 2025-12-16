@@ -298,11 +298,11 @@ class CoinWrapperTradingView extends React.Component {
           overlay={
             <Popover id='trading-view-alert-overlay-right'>
               <Popover.Content>
-                The data is older than {tradingViewUseOnlyWithin} minute(s).
-                This data will not be used until it is updated.
+                데이터가 {tradingViewUseOnlyWithin}분 이상 지났습니다.
+                업데이트될 때까지 이 데이터는 사용되지 않습니다.
                 <br />
                 <br />
-                Last updated: {updatedAt.fromNow()}
+                마지막 업데이트: {updatedAt.fromNow()}
               </Popover.Content>
             </Popover>
           }>

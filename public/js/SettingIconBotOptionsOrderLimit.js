@@ -40,7 +40,7 @@ class SettingIconBotOptionsOrderLimit extends React.Component {
               variant='link'
               eventKey='0'
               className='p-0 fs-7 text-uppercase'>
-              Order Limit
+              주문 제한
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey='0'>

@@ -24,31 +24,30 @@ class APIError extends React.Component {
           </h1>
 
           <h3 className='text-danger'>
-            Failed to load your account information.
+            계정 정보를 불러오는데 실패했습니다.
           </h3>
 
           <div className='text-left'>
             <p>
-              You are seeing this error message because of one of the following
-              situations:
+              다음 상황 중 하나로 인해 이 오류 메시지가 표시됩니다:
               <br />
               <ul>
-                <li>You are using TestNet API/Secret for Live Binance.</li>
-                <li>You are using Live API/Secret for TestNet Binance.</li>
-                <li>Your API key is revoked/deleted.</li>
+                <li>실제 바이낸스에 테스트넷 API/Secret을 사용하고 있습니다.</li>
+                <li>테스트넷 바이낸스에 실제 API/Secret을 사용하고 있습니다.</li>
+                <li>API 키가 취소/삭제되었습니다.</li>
                 <li>
-                  Your API key is not permitted to "Enable Reading" and "Enable
-                  Spot & Margin Trading".
+                  API 키에 "읽기 활성화" 및 "현물 & 마진 거래 활성화" 권한이
+                  없습니다.
                 </li>
                 <li>
-                  Your API key is restricted to trusted IP, and your bot is
-                  located not in trusted IP.
+                  API 키가 신뢰할 수 있는 IP로 제한되어 있고, 봇이 신뢰할 수 있는
+                  IP에 있지 않습니다.
                 </li>
               </ul>
             </p>
             <p>
-              Please read the following document carefully, update your
-              configuration. And then try to launch the bot again.
+              다음 문서를 주의 깊게 읽고 설정을 업데이트한 후 봇을 다시
+              실행하세요.
               <br />
               <a
                 href='https://github.com/chrisleekr/binance-trading-bot/wiki/Install#how-to-install'
@@ -58,8 +57,8 @@ class APIError extends React.Component {
               </a>
               <br />
               <br />
-              If the issue persists after confirming the API key/secret, please
-              open a new issue in Github.
+              API 키/시크릿을 확인한 후에도 문제가 지속되면 Github에 새 이슈를
+              열어주세요.
             </p>
           </div>
         </div>

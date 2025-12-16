@@ -62,7 +62,7 @@ class SymbolSettingIconBotOptions extends React.Component {
               variant='link'
               eventKey='0'
               className='p-0 fs-7 text-uppercase'>
-              Bot Options
+              봇 옵션
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey='0'>

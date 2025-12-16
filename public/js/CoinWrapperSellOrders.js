@@ -60,14 +60,14 @@ class CoinWrapperSellOrders extends React.Component {
                       <Popover.Content>
                         {grid.executed ? (
                           <React.Fragment>
-                            The grid trade #{i + 1} has been executed at.
+                            그리드 거래 #{i + 1}이(가) 실행되었습니다.
                           </React.Fragment>
                         ) : (
                           <React.Fragment>
-                            The grid trade #{i + 1} has not been executed.{' '}
+                            그리드 거래 #{i + 1}이(가) 아직 실행되지 않았습니다.{' '}
                             {currentGridTradeIndex === i
-                              ? 'Waiting to be executed.'
-                              : `Waiting the grid trade #${i} to be executed.`}
+                              ? '실행 대기 중입니다.'
+                              : `그리드 거래 #${i} 실행 대기 중입니다.`}
                           </React.Fragment>
                         )}
                       </Popover.Content>
@@ -106,7 +106,7 @@ class CoinWrapperSellOrders extends React.Component {
               }`}>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Trigger price percentage:
+                  - 트리거 가격 비율:
                 </span>
                 <div className='coin-info-value'>
                   {((grid.triggerPercentage - 1) * 100).toFixed(2)}%
@@ -114,7 +114,7 @@ class CoinWrapperSellOrders extends React.Component {
               </div>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Stop price percentage:
+                  - 손절 가격 비율:
                 </span>
                 <div className='coin-info-value'>
                   {((grid.stopPercentage - 1) * 100).toFixed(2)}%
@@ -122,7 +122,7 @@ class CoinWrapperSellOrders extends React.Component {
               </div>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Limit price percentage:
+                  - 지정가 비율:
                 </span>
                 <div className='coin-info-value'>
                   {((grid.limitPercentage - 1) * 100).toFixed(2)}%
@@ -130,7 +130,7 @@ class CoinWrapperSellOrders extends React.Component {
               </div>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Sell quantity percentage:
+                  - 매도 수량 비율:
                 </span>
                 <div className='coin-info-value'>
                   {(grid.quantityPercentage * 100).toFixed(2)}%
@@ -162,7 +162,7 @@ class CoinWrapperSellOrders extends React.Component {
               <HightlightChange
                 className='coin-info-value'
                 title={openOrder.updatedAt}>
-                placed at {moment(openOrder.updatedAt).format('HH:mm:ss')}
+                {moment(openOrder.updatedAt).format('HH:mm:ss')}에 주문됨
               </HightlightChange>
             ) : (
               ''
@@ -220,7 +220,7 @@ class CoinWrapperSellOrders extends React.Component {
           )}
           {openOrder.minimumProfit ? (
             <div className='coin-info-column coin-info-column-price'>
-              <span className='coin-info-label'>Minimum profit:</span>
+              <span className='coin-info-label'>최소 수익:</span>
               <HightlightChange className='coin-info-value'>
                 {parseFloat(openOrder.minimumProfit).toFixed(precision)}{' '}
                 {quoteAsset} (
@@ -233,7 +233,7 @@ class CoinWrapperSellOrders extends React.Component {
           <div className='coin-info-column coin-info-column-price divider'></div>
           {openOrder.limitPrice ? (
             <div className='coin-info-column coin-info-column-order'>
-              <span className='coin-info-label'>Current limit Price:</span>
+              <span className='coin-info-label'>현재 지정가:</span>
               <HightlightChange className='coin-info-value'>
                 {parseFloat(openOrder.limitPrice).toFixed(precision)}
               </HightlightChange>
@@ -243,7 +243,7 @@ class CoinWrapperSellOrders extends React.Component {
           )}
           {openOrder.differenceToCancel ? (
             <div className='coin-info-column coin-info-column-order'>
-              <span className='coin-info-label'>Difference to cancel:</span>
+              <span className='coin-info-label'>취소까지 차이:</span>
               <HightlightChange className='coin-info-value'>
                 {openOrder.differenceToCancel.toFixed(2)}%
               </HightlightChange>
@@ -263,7 +263,7 @@ class CoinWrapperSellOrders extends React.Component {
           )}
           {openOrder.differenceToExecute ? (
             <div className='coin-info-column coin-info-column-order'>
-              <span className='coin-info-label'>Difference to execute:</span>
+              <span className='coin-info-label'>실행까지 차이:</span>
               <HightlightChange className='coin-info-value'>
                 {openOrder.differenceToExecute.toFixed(2)}%
               </HightlightChange>
@@ -279,7 +279,7 @@ class CoinWrapperSellOrders extends React.Component {
       <div className='coin-info-sub-wrapper'>
         <div className='coin-info-column coin-info-column-title'>
           <div className='coin-info-label'>
-            Sell Open Orders{' '}
+            매도 미체결 주문{' '}
             <span className='coin-info-value'>
               {symbolConfiguration.sell.enabled ? (
                 <i className='fas fa-toggle-on'></i>

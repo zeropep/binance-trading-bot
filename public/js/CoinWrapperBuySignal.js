@@ -70,8 +70,7 @@ class CoinWrapperBuySignal extends React.Component {
             <div className='coin-info-column-grid'>
               <div className='coin-info-column coin-info-column-price'>
                 <div className='coin-info-label text-center text-muted'>
-                  ... {hiddenCount} grid trade{hiddenCount === 1 ? '' : 's'}{' '}
-                  hidden ...
+                  ... {hiddenCount}개 그리드 거래 숨김 ...
                 </div>
               </div>
             </div>
@@ -110,24 +109,24 @@ class CoinWrapperBuySignal extends React.Component {
                         {grid.executed ? (
                           <React.Fragment>
                             <span>
-                              The grid trade #{i + 1} has been executed{' '}
+                              그리드 거래 #{i + 1}이(가){' '}
                               {moment(grid.executedOrder.updateTime).fromNow()}{' '}
                               ({moment(grid.executedOrder.updateTime).format()}
-                              ).
+                              )에 실행되었습니다.
                             </span>
                           </React.Fragment>
                         ) : (
                           <React.Fragment>
-                            The grid trade #{i + 1} has not been executed.{' '}
+                            그리드 거래 #{i + 1}이(가) 아직 실행되지 않았습니다.{' '}
                             {sell.lastBuyPrice > 0
                               ? i === 0
-                                ? 'This grid trade will not be executed because the last buy price is recorded and the first grid trade is not executed.'
+                                ? '마지막 매수 가격이 기록되어 있고 첫 번째 그리드 거래가 실행되지 않았기 때문에 이 그리드 거래는 실행되지 않습니다.'
                                 : currentGridTradeIndex === i
-                                ? `Waiting to be executed.`
-                                : `Waiting the grid trade #${i} to be executed.`
+                                ? `실행 대기 중입니다.`
+                                : `그리드 거래 #${i} 실행 대기 중입니다.`
                               : currentGridTradeIndex === i
-                              ? 'Waiting to be executed.'
-                              : `Waiting the grid trade #${i} to be executed.`}
+                              ? '실행 대기 중입니다.'
+                              : `그리드 거래 #${i} 실행 대기 중입니다.`}
                           </React.Fragment>
                         )}
                       </Popover.Content>
@@ -189,18 +188,18 @@ class CoinWrapperBuySignal extends React.Component {
                       overlay={
                         <Popover id='buy-trigger-price-overlay-right'>
                           <Popover.Content>
-                            The trigger price{' '}
+                            트리거 가격{' '}
                             <code>
                               {parseFloat(buy.triggerPrice).toFixed(precision)}
-                            </code>{' '}
-                            is higher than the ATH buy restricted price{' '}
+                            </code>
+                            이(가) ATH 매수 제한 가격{' '}
                             <code>
                               {parseFloat(buy.athRestrictionPrice).toFixed(
                                 precision
                               )}
                             </code>
-                            . The bot will not place an order even if the
-                            current price reaches the trigger price.
+                            보다 높습니다. 현재 가격이 트리거 가격에 도달해도
+                            봇은 주문을 넣지 않습니다.
                           </Popover.Content>
                         </Popover>
                       }>
@@ -231,7 +230,7 @@ class CoinWrapperBuySignal extends React.Component {
             )}
             {buy.difference && currentGridTradeIndex === i ? (
               <div className='coin-info-column coin-info-column-price'>
-                <span className='coin-info-label'>Difference to buy:</span>
+                <span className='coin-info-label'>매수까지 차이:</span>
                 <HightlightChange
                   className={`coin-info-value ${
                     buy.difference > 0
@@ -254,7 +253,7 @@ class CoinWrapperBuySignal extends React.Component {
                   collapsed ? 'd-none' : ''
                 }`}>
                 <div className='coin-info-column coin-info-column-order'>
-                  <span className='coin-info-label'>- Purchased date:</span>
+                  <span className='coin-info-label'>- 매수 일시:</span>
                   <div className='coin-info-value'>
                     {moment(grid.executedOrder.transactTime).format(
                       'YYYY-MM-DD HH:mm'
@@ -262,19 +261,19 @@ class CoinWrapperBuySignal extends React.Component {
                   </div>
                 </div>
                 <div className='coin-info-column coin-info-column-order'>
-                  <span className='coin-info-label'>- Purchased price:</span>
+                  <span className='coin-info-label'>- 매수 가격:</span>
                   <div className='coin-info-value'>
                     {parseFloat(grid.executedOrder.price).toFixed(precision)}
                   </div>
                 </div>
                 <div className='coin-info-column coin-info-column-order'>
-                  <span className='coin-info-label'>- Purchased qty:</span>
+                  <span className='coin-info-label'>- 매수 수량:</span>
                   <div className='coin-info-value'>
                     {parseFloat(grid.executedOrder.executedQty)}
                   </div>
                 </div>
                 <div className='coin-info-column coin-info-column-order'>
-                  <span className='coin-info-label'>- Purchased amount:</span>
+                  <span className='coin-info-label'>- 매수 금액:</span>
                   <div className='coin-info-value'>
                     {parseFloat(grid.executedOrder.cummulativeQuoteQty).toFixed(
                       precision
@@ -292,7 +291,7 @@ class CoinWrapperBuySignal extends React.Component {
               }`}>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Trigger price percentage:
+                  - 트리거 가격 비율:
                 </span>
                 <div className='coin-info-value'>
                   {((grid.triggerPercentage - 1) * 100).toFixed(2)}%
@@ -300,7 +299,7 @@ class CoinWrapperBuySignal extends React.Component {
               </div>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Stop price percentage:
+                  - 손절 가격 비율:
                 </span>
                 <div className='coin-info-value'>
                   {((grid.stopPercentage - 1) * 100).toFixed(2)}%
@@ -308,7 +307,7 @@ class CoinWrapperBuySignal extends React.Component {
               </div>
               <div className='coin-info-column coin-info-column-order'>
                 <span className='coin-info-label'>
-                  - Limit price percentage:
+                  - 지정가 비율:
                 </span>
                 <div className='coin-info-value'>
                   {((grid.limitPercentage - 1) * 100).toFixed(2)}%
@@ -317,7 +316,7 @@ class CoinWrapperBuySignal extends React.Component {
               {grid.minPurchaseAmount > 0 ? (
                 <div className='coin-info-column coin-info-column-order'>
                   <span className='coin-info-label'>
-                    - Min purchase amount:
+                    - 최소 매수 금액:
                   </span>
                   <div className='coin-info-value'>
                     {grid.minPurchaseAmount} {quoteAsset}
@@ -327,7 +326,7 @@ class CoinWrapperBuySignal extends React.Component {
                 ''
               )}
               <div className='coin-info-column coin-info-column-order'>
-                <span className='coin-info-label'>- Max purchase amount:</span>
+                <span className='coin-info-label'>- 최대 매수 금액:</span>
                 <div className='coin-info-value'>
                   {grid.maxPurchaseAmount} {quoteAsset}
                 </div>
@@ -345,7 +344,7 @@ class CoinWrapperBuySignal extends React.Component {
         <React.Fragment key={'coin-wrapper-buy-next-grid-row-' + symbol}>
           <div className='coin-info-column coin-info-column-price'>
             <span className='coin-info-label'>
-              &#62; Suggested breakeven amount
+              &#62; 추천 손익분기 금액
               <SymbolGridCalculator
                 symbol={symbol}
                 symbolInfo={symbolInfo}
@@ -378,7 +377,7 @@ class CoinWrapperBuySignal extends React.Component {
           </div>
           {symbolConfiguration.buy.enabled === false ? (
             <HightlightChange className='coin-info-message badge-pill badge-danger'>
-              Trading is disabled.
+              거래가 비활성화되어 있습니다.
             </HightlightChange>
           ) : (
             ''
@@ -422,13 +421,11 @@ class CoinWrapperBuySignal extends React.Component {
                     overlay={
                       <Popover id='buy-ath-restricted-price-overlay-right'>
                         <Popover.Content>
-                          The bot will place a buy order when the trigger price
-                          is lower than ATH restricted price. Even if the
-                          current price reaches the trigger price, the bot will
-                          not purchase the coin if the current price is higher
-                          than the ATH restricted price. If you don't want to
-                          restrict the purchase with ATH, please disable the ATH
-                          price restriction in the setting.
+                          봇은 트리거 가격이 ATH 제한 가격보다 낮을 때 매수
+                          주문을 넣습니다. 현재 가격이 트리거 가격에 도달해도
+                          현재 가격이 ATH 제한 가격보다 높으면 코인을 매수하지
+                          않습니다. ATH로 매수를 제한하지 않으려면 설정에서
+                          ATH 가격 제한을 비활성화하세요.
                         </Popover.Content>
                       </Popover>
                     }>
@@ -462,7 +459,7 @@ class CoinWrapperBuySignal extends React.Component {
 
         {buy.highestPrice ? (
           <div className='coin-info-column coin-info-column-price'>
-            <span className='coin-info-label'>Highest price:</span>
+            <span className='coin-info-label'>최고가:</span>
             <HightlightChange className='coin-info-value'>
               {parseFloat(buy.highestPrice).toFixed(precision)}
             </HightlightChange>
@@ -472,7 +469,7 @@ class CoinWrapperBuySignal extends React.Component {
         )}
         {buy.currentPrice ? (
           <div className='coin-info-column coin-info-column-price'>
-            <span className='coin-info-label'>Current price:</span>
+            <span className='coin-info-label'>현재가:</span>
             <HightlightChange className='coin-info-value'>
               {parseFloat(buy.currentPrice).toFixed(precision)}
             </HightlightChange>
@@ -482,7 +479,7 @@ class CoinWrapperBuySignal extends React.Component {
         )}
         {buy.lowestPrice ? (
           <div className='coin-info-column coin-info-column-lowest-price'>
-            <span className='coin-info-label'>Lowest price:</span>
+            <span className='coin-info-label'>최저가:</span>
             <HightlightChange className='coin-info-value'>
               {parseFloat(buy.lowestPrice).toFixed(precision)}
             </HightlightChange>

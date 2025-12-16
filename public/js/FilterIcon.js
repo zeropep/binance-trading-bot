@@ -170,7 +170,7 @@ class FilterIcon extends React.Component {
                     variant='link'
                     eventKey='0'
                     className='p-0 fs-7 text-uppercase'>
-                    Search symbols
+                    심볼 검색
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey='0'>
@@ -179,7 +179,7 @@ class FilterIcon extends React.Component {
                       <Form.Control
                         size='sm'
                         type='search'
-                        placeholder='Enter keyword...'
+                        placeholder='키워드 입력...'
                         defaultValue={searchKeyword}
                         onChange={this.setSearchKeyword}
                       />
@@ -196,7 +196,7 @@ class FilterIcon extends React.Component {
                     variant='link'
                     eventKey='0'
                     className='p-0 fs-7 text-uppercase'>
-                    Sort symbols
+                    심볼 정렬
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey='0'>

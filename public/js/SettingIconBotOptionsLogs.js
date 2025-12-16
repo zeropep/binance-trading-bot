@@ -40,7 +40,7 @@ class SettingIconBotOptionsLogs extends React.Component {
               variant='link'
               eventKey='0'
               className='p-0 fs-7 text-uppercase'>
-              Logs
+              로그
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey='0'>

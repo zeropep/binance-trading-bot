@@ -40,7 +40,7 @@ class SettingIconBotOptionsAutoTriggerBuy extends React.Component {
               variant='link'
               eventKey='0'
               className='p-0 fs-7 text-uppercase'>
-              Auto Trigger Buy
+              자동 매수 트리거
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey='0'>
@@ -131,7 +131,7 @@ class SettingIconBotOptionsAutoTriggerBuy extends React.Component {
                 </div>
 
                 <div className='col-12'>
-                  <strong>Conditions</strong>
+                  <strong>조건</strong>
                 </div>
                 <div className='col-12 col-md-6'>
                   <Form.Group
