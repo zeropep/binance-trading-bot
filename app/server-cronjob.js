@@ -6,7 +6,8 @@ const { maskConfig } = require('./cronjob/trailingTradeHelper/util');
 const {
   executeAlive,
   executeTrailingTradeIndicator,
-  executeTradingView
+  executeTradingView,
+  executeTradingViewAll
 } = require('./cronjob');
 
 const fulfillWithTimeLimit = async (logger, timeLimit, task, failureValue) => {
@@ -51,9 +52,14 @@ const runCronjob = async serverLogger => {
     {
       jobName: 'tradingView',
       executeJob: executeTradingView
+    },
+    {
+      jobName: 'tradingViewAll',
+      executeJob: executeTradingViewAll,
+      timeLimit: 120000
     }
   ].forEach(job => {
-    const { jobName, executeJob } = job;
+    const { jobName, executeJob, timeLimit = 20000 } = job;
     if (config.get(`jobs.${jobName}.enabled`)) {
       jobInstances[jobName] = new CronJob(
         config.get(`jobs.${jobName}.cronTime`),
@@ -66,11 +72,10 @@ const runCronjob = async serverLogger => {
 
           const moduleLogger = logger.child({ job: jobName, uuid: uuidv4() });
 
-          // Make sure the job running within 20 seconds.
-          // If longer than 20 seconds, something went wrong.
+          // Make sure the job running within time limit.
           await fulfillWithTimeLimit(
             moduleLogger,
-            20000,
+            timeLimit,
             executeJob(moduleLogger),
             null
           );
