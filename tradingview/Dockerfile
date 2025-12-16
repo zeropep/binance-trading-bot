@@ -5,13 +5,14 @@ WORKDIR /app
 
 COPY requirements.txt requirements.txt
 
+# pip 업그레이드 먼저
+RUN pip install --upgrade pip
+
+# 의존성 설치
 RUN pip install --no-cache-dir -r requirements.txt
 
+# 애플리케이션 코드 복사
 COPY . .
 
-ENV FLASK_APP=main.py
-ENV FLASK_ENV=production
-
-CMD [ "python", "main.py"]
-
-EXPOSE 8080
+# 애플리케이션 실행
+CMD ["python", "main.py"]
